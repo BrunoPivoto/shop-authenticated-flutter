@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
@@ -9,7 +11,6 @@ import '../utils/constants.dart';
 import 'order.dart';
 
 class OrderList with ChangeNotifier {
-  // ignore: prefer_final_fields
   String _token;
   List<Order> _items = [];
 
@@ -24,13 +25,13 @@ class OrderList with ChangeNotifier {
   }
 
   Future<void> loadOrders() async {
-    _items.clear();
+    List<Order> items = [];
     final response = await http
         .get(Uri.parse('${Constants.ORDERS_BASE_URL}.json?auth=$_token'));
     if (response.body == 'null') return;
     Map<String, dynamic> data = jsonDecode(response.body);
     data.forEach((orderId, orderData) {
-      _items.add(Order(
+      items.add(Order(
         id: orderId,
         date: DateTime.parse(orderData['date']),
         total: orderData['total'],
@@ -45,6 +46,7 @@ class OrderList with ChangeNotifier {
         }).toList(),
       ));
     });
+    _items = items.reversed.toList();
     notifyListeners();
   }
 
