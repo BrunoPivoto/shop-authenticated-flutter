@@ -1,0 +1,10 @@
+^D:\CURSOS\FLUTTER\UDEMY\MODULO_08\SHOP\BUILD\WINDOWS\CMAKEFILES\02CB9F5C4ABD7FE4F30DCCF1AFBBC51C\GENERATE.STAMP.RULE
+setlocal
+"D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Cursos/Flutter/Udemy/Modulo_08/shop/windows -BD:/Cursos/Flutter/Udemy/Modulo_08/shop/build/windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Cursos/Flutter/Udemy/Modulo_08/shop/build/windows/shop.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

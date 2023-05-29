@@ -1,0 +1,10 @@
+^D:\CURSOS\FLUTTER\UDEMY\MODULO_08\SHOP\BUILD\WINDOWS\CMAKEFILES\02CB9F5C4ABD7FE4F30DCCF1AFBBC51C\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

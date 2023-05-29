@@ -1,0 +1,28 @@
+^D:\CURSOS\FLUTTER\UDEMY\MODULO_08\SHOP\BUILD\WINDOWS\CMAKEFILES\7E1395BADD321016CB597937221F12F3\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\flutter PROJECT_DIR=D:\Cursos\Flutter\Udemy\Modulo_08\shop FLUTTER_ROOT=C:\flutter FLUTTER_EPHEMERAL_DIR=D:\Cursos\Flutter\Udemy\Modulo_08\shop\windows\flutter\ephemeral PROJECT_DIR=D:\Cursos\Flutter\Udemy\Modulo_08\shop FLUTTER_TARGET=D:\Cursos\Flutter\Udemy\Modulo_08\shop\lib\main.dart DART_DEFINES=RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ==,RkxVVFRFUl9XRUJfQ0FOVkFTS0lUX1VSTD1odHRwczovL3d3dy5nc3RhdGljLmNvbS9mbHV0dGVyLWNhbnZhc2tpdC9hOGU5YWM2M2ZkOTVjNWM4YjFmODU3M2ZmZTYyOTk0NWJkY2U3ZWVhLw== DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=D:\Cursos\Flutter\Udemy\Modulo_08\shop\.dart_tool\package_config.json C:/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\CURSOS\FLUTTER\UDEMY\MODULO_08\SHOP\BUILD\WINDOWS\CMAKEFILES\FA2BA44DEEB31C203E9C562761CF2661\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\CURSOS\FLUTTER\UDEMY\MODULO_08\SHOP\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Cursos/Flutter/Udemy/Modulo_08/shop/windows -BD:/Cursos/Flutter/Udemy/Modulo_08/shop/build/windows --check-stamp-file D:/Cursos/Flutter/Udemy/Modulo_08/shop/build/windows/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
