@@ -1,15 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_final_fields
 import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
 import 'package:shop/exceptions/http_exception.dart';
 import 'package:shop/models/product.dart';
 import 'package:shop/utils/constants.dart';
 
 class ProductList with ChangeNotifier {
-  // ignore: prefer_final_fields
+  String _token;
   List<Product> _items = [];
+  ProductList(this._token, this._items);
 
   List<Product> get items => _items;
   List<Product> get favoriteItems =>
@@ -21,7 +24,8 @@ class ProductList with ChangeNotifier {
 
   Future<void> loadProducts() async {
     _items.clear();
-    final response = await http.get(Uri.parse('${Constants.PRODUCT_BASE_URL}.json'));
+    final response = await http
+        .get(Uri.parse('${Constants.PRODUCT_BASE_URL}.json?auth=$_token'));
     if (response.body == 'null') return;
     Map<String, dynamic> data = jsonDecode(response.body);
     data.forEach((productId, productData) {
@@ -55,7 +59,7 @@ class ProductList with ChangeNotifier {
 
   Future<void> addProduct(Product product) async {
     final response = await http.post(
-      Uri.parse('${Constants.PRODUCT_BASE_URL}.json'),
+      Uri.parse('${Constants.PRODUCT_BASE_URL}.json?auth=$_token'),
       body: jsonEncode({
         'name': product.name,
         'description': product.description,
@@ -81,7 +85,8 @@ class ProductList with ChangeNotifier {
     int index = _items.indexWhere((element) => element.id == product.id);
     if (index >= 0) {
       await http.patch(
-        Uri.parse('${Constants.PRODUCT_BASE_URL}/${product.id}.json'),
+        Uri.parse(
+            '${Constants.PRODUCT_BASE_URL}/${product.id}.json?auth=$_token'),
         body: jsonEncode({
           'name': product.name,
           'description': product.description,
@@ -103,7 +108,8 @@ class ProductList with ChangeNotifier {
       notifyListeners();
 
       final response = await http.delete(
-        Uri.parse('${Constants.PRODUCT_BASE_URL}/${product.id}.json'),
+        Uri.parse(
+            '${Constants.PRODUCT_BASE_URL}/${product.id}.json?auth=$_token'),
       );
 
       if (response.statusCode >= 400) {
