@@ -3,16 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:shop/components/app_drawer.dart';
 import 'package:shop/components/product_item.dart';
 import 'package:shop/models/product_list.dart';
-import 'package:shop/utils/app_routes.dart';
+import 'package:shop/utils/app_route.dart';
 
-class ProductsPage extends StatelessWidget {
-  const ProductsPage({Key? key}) : super(key: key);
+class ProductsScreen extends StatelessWidget {
+  const ProductsScreen({super.key});
 
   Future<void> _refreshProducts(BuildContext context) {
-    return Provider.of<ProductList>(
-      context,
-      listen: false,
-    ).loadProducts();
+    return Provider.of<ProductList>(context, listen: false).loadProducts();
   }
 
   @override
@@ -23,11 +20,10 @@ class ProductsPage extends StatelessWidget {
         title: const Text('Gerenciar Produtos'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.productForm);
-            },
-          )
+              onPressed: () {
+                Navigator.of(context).pushNamed(AppRoutes.PRODUCT_FORM);
+              },
+              icon: const Icon(Icons.add))
         ],
       ),
       drawer: const AppDrawer(),
@@ -37,9 +33,11 @@ class ProductsPage extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: ListView.builder(
             itemCount: products.itemsCount,
-            itemBuilder: (ctx, i) => Column(
+            itemBuilder: (context, index) => Column(
               children: [
-                ProductItem(products.items[i]),
+                ProductItem(
+                  product: products.items[index],
+                ),
                 const Divider(),
               ],
             ),

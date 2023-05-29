@@ -45,7 +45,8 @@ class CartItemWidget extends StatelessWidget {
         );
       },
       onDismissed: (_) {
-        Provider.of<Cart>(context, listen: false).removeItem(cartItem.productId);
+        Provider.of<Cart>(context, listen: false)
+            .removeItem(cartItem.productId);
       },
       child: Card(
         margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
@@ -63,8 +64,9 @@ class CartItemWidget extends StatelessWidget {
                 ),
               )),
           title: Text(cartItem.name),
-          subtitle: Text('Total: R\$ ${(cartItem.price * cartItem.quantity).toStringAsFixed(2)}'),
-          trailing: Text('x${cartItem.quantity}'),
+          subtitle: Text(
+              'Total: R\$ ${(cartItem.price * cartItem.qnt).toStringAsFixed(2)}'),
+          trailing: Text('x${cartItem.qnt}'),
         ),
       ),
     );

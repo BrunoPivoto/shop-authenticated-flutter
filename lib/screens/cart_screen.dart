@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/components/cart_item.dart';
+import 'package:shop/components/cart_item_widget.dart';
 import 'package:shop/models/cart.dart';
 import 'package:shop/models/order_list.dart';
 
-class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+class CartScreen extends StatelessWidget {
+  const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final Cart cart = Provider.of(context);
     final items = cart.items.values.toList();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Carrinho'),
@@ -19,12 +18,9 @@ class CartPage extends StatelessWidget {
       body: Column(
         children: [
           Card(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: 25,
-            ),
+            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
             child: Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -34,14 +30,14 @@ class CartPage extends StatelessWidget {
                       fontSize: 20,
                     ),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   Chip(
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     label: Text(
-                      'R\$${cart.totalAmount.toStringAsFixed(2)}',
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
+                      'R\$ ${(cart.totalAmount).toStringAsFixed(2)}',
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                   const Spacer(),
@@ -50,12 +46,21 @@ class CartPage extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: items.length,
-              itemBuilder: (ctx, i) => CartItemWidget(items[i]),
-            ),
-          ),
+          cart.itemsCount > 0
+              ? Expanded(
+                  child: ListView.builder(
+                  itemCount: items.length,
+                  itemBuilder: (ctx, i) => CartItemWidget(cartItem: items[i]),
+                ))
+              : const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Carrinho vazio',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
+                ),
         ],
       ),
     );
@@ -64,9 +69,9 @@ class CartPage extends StatelessWidget {
 
 class CartButton extends StatefulWidget {
   const CartButton({
-    Key? key,
+    super.key,
     required this.cart,
-  }) : super(key: key);
+  });
 
   final Cart cart;
 
@@ -76,7 +81,6 @@ class CartButton extends StatefulWidget {
 
 class _CartButtonState extends State<CartButton> {
   bool _isLoading = false;
-
   @override
   Widget build(BuildContext context) {
     return _isLoading
@@ -86,7 +90,6 @@ class _CartButtonState extends State<CartButton> {
                 ? null
                 : () async {
                     setState(() => _isLoading = true);
-
                     await Provider.of<OrderList>(
                       context,
                       listen: false,
@@ -95,7 +98,8 @@ class _CartButtonState extends State<CartButton> {
                     widget.cart.clear();
                     setState(() => _isLoading = false);
                   },
-            child: const Text('COMPRAR'),
+            child: Text('COMPRAR',
+                style: TextStyle(color: Theme.of(context).colorScheme.primary)),
           );
   }
 }

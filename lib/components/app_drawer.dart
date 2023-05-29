@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shop/utils/app_routes.dart';
+import 'package:shop/utils/app_route.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({Key? key}) : super(key: key);
+  const AppDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,8 +10,8 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: [
           AppBar(
-            title: const Text('Bem vindo Usuário!'),
             automaticallyImplyLeading: false,
+            title: const Text('Bem vindo Usuário'),
           ),
           const Divider(),
           ListTile(
@@ -19,7 +19,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Loja'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
-                AppRoutes.authOrHome,
+                AppRoutes.AUTH_OR_HOME,
               );
             },
           ),
@@ -29,7 +29,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Pedidos'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
-                AppRoutes.orders,
+                AppRoutes.ORDERS,
               );
             },
           ),
@@ -39,7 +39,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Gerenciar Produtos'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
-                AppRoutes.products,
+                AppRoutes.PRODUCTS,
               );
             },
           ),
