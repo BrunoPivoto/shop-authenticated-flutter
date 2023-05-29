@@ -21,7 +21,7 @@ class ProductsScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(AppRoutes.PRODUCT_FORM);
+                Navigator.of(context).pushNamed(AppRoutes.productForm);
               },
               icon: const Icon(Icons.add))
         ],

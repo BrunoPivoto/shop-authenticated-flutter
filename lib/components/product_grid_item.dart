@@ -21,10 +21,12 @@ class ProductGridItem extends StatelessWidget {
           leading: Consumer<Product>(
             builder: (cxt, product, _) => IconButton(
               onPressed: () {
-                product.toggleFavorite(auth.token ?? '');
+                product.toggleFavorite(
+                  auth.token ?? '',
+                  auth.userId ?? '',
+                );
               },
-              icon: Icon(
-                  product.isFavorite ? Icons.favorite : Icons.favorite_border),
+              icon: Icon(product.isFavorite ? Icons.favorite : Icons.favorite_border),
               color: Theme.of(context).colorScheme.secondary,
             ),
           ),
@@ -52,8 +54,7 @@ class ProductGridItem extends StatelessWidget {
         ),
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context)
-                .pushNamed(AppRoutes.PRODUCT_DETAIL, arguments: product);
+            Navigator.of(context).pushNamed(AppRoutes.productDetail, arguments: product);
           },
           child: Image.network(
             product.imageUrl,

@@ -27,7 +27,7 @@ class ProductItem extends StatelessWidget {
             IconButton(
               onPressed: () {
                 Navigator.of(context).pushNamed(
-                  AppRoutes.PRODUCT_FORM,
+                  AppRoutes.productForm,
                   arguments: product,
                 );
               },
@@ -49,8 +49,7 @@ class ProductItem extends StatelessWidget {
                           child: const Text('Não')),
                       TextButton(
                           onPressed: () {
-                            Provider.of<ProductList>(context, listen: false)
-                                .deleteProduct(product);
+                            Provider.of<ProductList>(context, listen: false).removeProduct(product);
                             Navigator.of(ctx).pop(true);
                           },
                           child: const Text('Sim')),
@@ -62,7 +61,7 @@ class ProductItem extends StatelessWidget {
                       await Provider.of<ProductList>(
                         context,
                         listen: false,
-                      ).deleteProduct(product);
+                      ).removeProduct(product);
                     } on HttpException catch (error) {
                       msg.showSnackBar(
                         SnackBar(
